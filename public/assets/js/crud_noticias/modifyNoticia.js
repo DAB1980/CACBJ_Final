@@ -31,7 +31,7 @@ const modifyButtonHandleClick = (e) => {
         
     }
 
-    const url = './noticias/' + updInputId.value
+    const url = '/noticias/' + updInputId.value
 
     fetch(url, {
         method: "PUT",
