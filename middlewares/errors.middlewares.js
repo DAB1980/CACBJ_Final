@@ -7,7 +7,7 @@ const errorData = (req) => ({
     },
     productNotExist: {
         error_code: 3,
-        error_desc: 'Producto inexistente'
+        error_desc: 'Noticia inexistente'
     },
     notConnected: {
         error_code: 10,
@@ -23,7 +23,10 @@ const errorData = (req) => ({
 
 const errorController = (err, req, res, _) => {
 
+    
     console.log('ESTAMOS EN EL MIDDLEWARE DE ERRORES')
+    //console.log(req.body)
+    //console.log(err)
 
     const errorCode = parseInt(err.message)
     const error = errorData(req)
@@ -32,7 +35,7 @@ const errorController = (err, req, res, _) => {
 
     switch (errorCode) {
         case 3:
-            res.json(error.productNotExist)
+            res.json(error.noticiaNotExist)
             break;
         case 4:
             res.json(error.incompleteEndpoint)

@@ -11,7 +11,7 @@ const deleteButtonHandleClick = (e) => {
     if (value.length === 0)
         return alert('Debe ingresar un valor')
 
-    const url = './products/' + value
+    const url = './noticias/' + value
 
     fetch(url, { method: "DELETE" })
         .then(res => res.json())

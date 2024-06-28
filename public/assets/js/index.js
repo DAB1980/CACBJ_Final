@@ -23,8 +23,10 @@ const loadComponent = (elementId, filePath) => {
 }
 
 const getLastNews = () =>{
-  fetch('./data/noticias.json')
-    .then(response => response.json())
+  fetch('./noticias')
+  .then(res => res.json())
+  //.then(res => showNoticias(res))
+  //.then(response => response.json())
     .then(data => {
         const parNoticias = data.slice(0, 2)
         const noticiasIndex = document.getElementById('noticias_index')
@@ -58,5 +60,6 @@ const getLastNews = () =>{
           noticiasIndex.appendChild(itemNoticiasIndex)
         });
     })
-    .catch(error => console.error('Error al cargar el JSON:', error));
+    .catch(err => console.log(err))
+    //.catch(error => console.error('Error al cargar el JSON:', error));
 }
