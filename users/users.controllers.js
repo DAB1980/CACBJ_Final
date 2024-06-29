@@ -10,6 +10,7 @@ const getUsers = async (_, res) => {
 const getUser = async (req, res) => {
     const { id } = req.params
     const result = await db.getUser(id)
+   // console.log("va usuario",result)
     res.json(result)
 }
 
@@ -23,10 +24,11 @@ const createUser = async (req, res) => {
 
 
 const updateUser = async (req, res) => {
+    console.log("aca");
     const { id } = req.params
     const user = adapters.parseUser(req.body)
     const result = await db.updateUser(id, user)
-    res.json(result)
+    result ? res.redirect('/usersABM.html') : res.redirect('/usersABM.html')
 }
 
 

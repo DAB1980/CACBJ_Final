@@ -17,7 +17,7 @@ const getUser = async (id) => {
         
         const query = `SELECT * FROM users WHERE id=${id}`
         const [result] = await connection.promise().query(query)
-        
+        //console.log("va usuario",result)
         return result
     }
     catch (err) { return Error(10) }
@@ -51,7 +51,7 @@ const updateUser = async (id, user) => {
         //console.log(fields)
         const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?, alias=?, perfil=? WHERE id=?`
         const [result] = await connection.promise().query(query, fields)
-
+         //console.log(result)
         return result.affectedRows > 0 ? Error(0) : Error(3)
     }
     catch (err) { return Error(10) }
