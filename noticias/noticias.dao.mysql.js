@@ -62,7 +62,7 @@ const getNoticia = async (id) => {
         
         const query = `SELECT * FROM noticias WHERE id=${id}`
         const [result] = await connection.promise().query(query)
-        console.log("query=: ",query)
+        //console.log("query=: ",query)
         return result
     }
     catch (err) { return Error(10) }

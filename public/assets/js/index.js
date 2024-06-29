@@ -25,9 +25,7 @@ const loadComponent = (elementId, filePath) => {
 const getLastNews = () =>{
   fetch('./noticias')
   .then(res => res.json())
-  //.then(res => showNoticias(res))
-  //.then(response => response.json())
-    .then(data => {
+     .then(data => {
         const parNoticias = data.slice(0, 2)
         const noticiasIndex = document.getElementById('noticias_index')
         parNoticias.forEach(element => {

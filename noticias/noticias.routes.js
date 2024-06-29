@@ -8,18 +8,13 @@ router
     .use(middlewares.routes.checkRoute)
     
    
-    .get('/noticias',
-        controllers.getNoticias)
-
-      .get('/:id',
+    .get('/:id',
           middlewares.routes.checkParams,
           controllers.getNoticia)
 
     .get('/',
         controllers.getNoticias)
-
     
-        
     .post('/',
         middlewares.files.uploadImage.single('image'),
         controllers.createNoticia)

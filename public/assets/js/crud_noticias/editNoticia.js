@@ -1,13 +1,16 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     //fetch('../data/noticias.json')
       const urlParams = new URLSearchParams(window.location.search);
       const id = urlParams.get('id')
       const url = './noticias/' + id
+      alert(`${url}`)
       fetch(url)
         .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            const noticia = data
+        .then(res => {
+            console.log(res)
+            const noticia = res
 
             document.title = noticia.title
 

@@ -1,14 +1,14 @@
 const checkParams = (req, res, next) => {
-
-    req.params.id = parseInt(req.params.id)
     
-    console.log("url",req.url)
-    if (isNaN(req.params.id))
+    if (isNaN(req.params.id)){
+        
         return res.json({
             error_code: 1,
             error_desc: 'Formato de id inválido'
         })
-
+    }
+    
+    
     next()
 }
 
