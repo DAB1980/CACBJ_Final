@@ -5,35 +5,30 @@ document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const id = urlParams.get('id')
       const url = './noticias/' + id
-      alert(`${url}`)
+      //alert(`${url}`)
       fetch(url)
         .then(res => res.json())
         .then(res => {
             console.log(res)
             const noticia = res
 
-            document.title = noticia.title
+            const idNoticia = document.getElementById('id')
+            idNoticia.textContent=  `${noticia.id}`
 
-            const fechaNoticia = document.getElementById('fecha_noticia')
-            fechaNoticia.textContent = `${noticia.date} | ${noticia.category}`
+            const title = document.getElementById('title')
+            title.textContent=  `${noticia.title}`
 
-            
-            const tituloNoticia = document.getElementById('noticia_titulo')
-            tituloNoticia.style.display = 'inline'
-            tituloNoticia.textContent = noticia.title
+            const subtitle = document.getElementById('subtitle')
+            subtitle.textContent=  `${user.subtitle}`
 
-            const copeteNoticia = document.getElementById('noticia_copete')
-            copeteNoticia.textContent = noticia.subtitle
+            const date = document.getElementById('date')
+            date.textContent=  `${user.date}`
 
-            const imagenNoticia = document.getElementById('noticia_imagen')
-            imagenNoticia.src = noticia.img
+            const category = document.getElementById('category')
+            category.textContent=  `${user.category}`
 
-            const textoNoticia = document.getElementById('noticia_texto')
-            noticia.content.forEach(item =>{
-                const parrafo = document.createElement('p')
-                parrafo.textContent = item
-                textoNoticia.append(parrafo)
-            })
+             const content = document.getElementById('content')
+            content.textContent=  `${user.content}`
         })
         .catch(error => console.error('Error al cargar el JSON:', error));
 });

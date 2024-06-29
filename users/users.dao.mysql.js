@@ -2,7 +2,7 @@ import { connection } from '../db/mysql.connection.js'
 import { helpers } from './users.helpers.js'
 
 
-const table = 'usuarios'
+const table = 'users'
 
 
 const getUsers = async () => {
