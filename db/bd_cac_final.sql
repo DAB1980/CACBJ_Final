@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-06-2024 a las 17:54:36
+-- Tiempo de generación: 29-06-2024 a las 22:49:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -67,6 +67,48 @@ CREATE TABLE `plantel_fm` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `provincias`
+--
+
+CREATE TABLE `provincias` (
+  `id` int(10) NOT NULL,
+  `provincia` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `provincias`
+--
+
+INSERT INTO `provincias` (`id`, `provincia`) VALUES
+(1, 'Buenos Aires'),
+(2, 'Buenos Aires-GBA'),
+(3, 'Capital Federal'),
+(4, 'Catamarca'),
+(5, 'Chaco'),
+(6, 'Chubut'),
+(7, 'Córdoba'),
+(8, 'Corrientes'),
+(9, 'Entre Ríos'),
+(10, 'Formosa'),
+(11, 'Jujuy'),
+(12, 'La Pampa'),
+(13, 'La Rioja'),
+(14, 'Mendoza'),
+(15, 'Misiones'),
+(16, 'Neuquén'),
+(17, 'Río Negro'),
+(18, 'Salta'),
+(19, 'San Juan'),
+(20, 'San Luis'),
+(21, 'Santa Cruz'),
+(22, 'Santa Fe'),
+(23, 'Santiago del Estero'),
+(24, 'Tierra del Fuego'),
+(25, 'Tucumán');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `socios`
 --
 
@@ -75,10 +117,19 @@ CREATE TABLE `socios` (
   `nombre` varchar(256) NOT NULL,
   `apellido` varchar(256) NOT NULL,
   `mail` varchar(256) NOT NULL,
+  `idprovincia` int(10) NOT NULL,
   `activo` tinyint(1) NOT NULL,
   `fecha_alta` date NOT NULL DEFAULT current_timestamp(),
   `fecha_baja` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `socios`
+--
+
+INSERT INTO `socios` (`id`, `nombre`, `apellido`, `mail`, `idprovincia`, `activo`, `fecha_alta`, `fecha_baja`) VALUES
+(7, 'sas', 'sas', 'sasa', 20, 0, '2024-06-27', '2024-06-27'),
+(8, 'prprpr', 'épepep', 'fsdfdfd', 1, 1, '2024-06-20', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -94,6 +145,13 @@ CREATE TABLE `users` (
   `alias` varchar(256) NOT NULL,
   `perfil` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `nombre`, `apellido`, `mail`, `alias`, `perfil`) VALUES
+(1, 'pablo', 'gomez', 'pablo@gmail.com', 'pgomez', 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -112,10 +170,17 @@ ALTER TABLE `plantel_fm`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `provincias`
+--
+ALTER TABLE `provincias`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `socios`
 --
 ALTER TABLE `socios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_provincias` (`idprovincia`);
 
 --
 -- Indices de la tabla `users`
@@ -140,16 +205,32 @@ ALTER TABLE `plantel_fm`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `provincias`
+--
+ALTER TABLE `provincias`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
 -- AUTO_INCREMENT de la tabla `socios`
 --
 ALTER TABLE `socios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `socios`
+--
+ALTER TABLE `socios`
+  ADD CONSTRAINT `fk_provincias` FOREIGN KEY (`idprovincia`) REFERENCES `provincias` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

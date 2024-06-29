@@ -17,7 +17,8 @@ const getSocio = async (req, res) => {
 const createSocio = async (req, res) => {
     const socio = adapters.parseSocio(req.body)
     const result = await db.createSocio(socio)
-    res.json(result)
+    result ? res.redirect('/sociosABM.html') : res.redirect('/sociosABM.html')
+  
 }
 
 

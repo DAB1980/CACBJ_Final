@@ -13,7 +13,7 @@ const getNoticias = async (_, res) => {
 const createNoticia= async (req, res) => {
     const noticia = adapters.noticiaAdapter(req.body, req.file)
     const result = await db.createNoticia(noticia)
-    result ? res.redirect('/') : res.redirect('/')
+    result ? res.redirect('/noticiasABM.html') : res.redirect('/noticiasABM.html')
 }
 
 // Atención al control de errores: Función síncrona

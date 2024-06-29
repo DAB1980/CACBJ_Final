@@ -24,11 +24,13 @@ const getSocio = async (id) => {
 
 const createSocio = async (socio) => {
     try {
+       console.log("socio: ",socio)
+        const { nombre, apellido, mail, idprovincia, activo, fecha_alta, fecha_baja } = socio
+        const fields = [nombre, apellido, mail,idprovincia, activo, fecha_alta, fecha_baja]
        
-        const { nombre, apellido, mail, activo, fecha_alta, fecha_baja } = socio
-        const fields = [nombre, apellido, mail, activo, fecha_alta, fecha_baja]
         
-        const query = `INSERT INTO ${table} VALUES (NULL,?,?,?,?,?,?)`
+        const query = `INSERT INTO ${table} VALUES (NULL,?,?,?,?,?,?,?)`
+        console.log("query: ",query)
         const [result] = await connection.promise().query(query, fields)
 
         return result.affectedRows > 0
@@ -44,10 +46,10 @@ const createSocio = async (socio) => {
 const updateSocio = async (id, socio) => {
     try {
         
-        const { nombre, apellido, mail, activo, fecha_alta, fecha_baja } = socio
-        const fields = [nombre, apellido, mail, activo, fecha_alta, fecha_baja,id]
+        const { nombre, apellido, mail,idprovincia, activo, fecha_alta, fecha_baja } = socio
+        const fields = [nombre, apellido, mail, idprovincia, activo, fecha_alta, fecha_baja,id]
         //console.log(fields)
-        const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?, activo=?, fecha_alta=?, fecha_baja=? WHERE id=?`
+        const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?,idprovincia=? ,activo=?, fecha_alta=?, fecha_baja=? WHERE id=?`
         const [result] = await connection.promise().query(query, fields)
 
         return result.affectedRows > 0 ? Error(0) : Error(3)

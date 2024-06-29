@@ -17,7 +17,7 @@ const getUser = async (req, res) => {
 const createUser = async (req, res) => {
     const user = adapters.parseUser(req.body)
     const result = await db.createUser(user)
-    res.json(result)
+    result ? res.redirect('/usersABM.html') : res.redirect('/usersABM.html')
 }
 
 
