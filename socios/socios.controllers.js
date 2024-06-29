@@ -8,9 +8,9 @@ const getSocios = async (_, res) => {
 }
 
 const getSocio = async (req, res) => {
-    const socio= adapters.parseSocio(req.body)
-    const result = await db.getSocio(socio)
-    result ? res.redirect('/') : res.redirect('/')
+    const { id } = req.params
+    const result = await db.getSocio(id)
+    res.json(result)
 }
 
 

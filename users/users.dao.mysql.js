@@ -8,6 +8,7 @@ const table = 'users'
 const getUsers = async () => {
     const query = `SELECT * FROM ${table}`
     const [result] = await connection.promise().query(query)
+    
     return result
 }
 
@@ -16,7 +17,7 @@ const getUser = async (id) => {
         
         const query = `SELECT * FROM users WHERE id=${id}`
         const [result] = await connection.promise().query(query)
-        //console.log("query=: ",query)
+        
         return result
     }
     catch (err) { return Error(10) }

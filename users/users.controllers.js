@@ -8,9 +8,9 @@ const getUsers = async (_, res) => {
 }
 
 const getUser = async (req, res) => {
-    const user= adapters.parseUser(req.body)
-    const result = await db.getUser(user)
-    result ? res.redirect('/') : res.redirect('/')
+    const { id } = req.params
+    const result = await db.getUser(id)
+    res.json(result)
 }
 
 
