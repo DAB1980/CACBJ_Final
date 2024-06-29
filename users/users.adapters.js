@@ -2,8 +2,8 @@ import User from "../models/User.js"
 
 
 const parseUser = (data) => {
-    const { name, age } = data
-    const user = new User(name, parseInt(age))
+    const { nombre, apellido, mail, alias, perfil } = data
+    const user = new User(nombre, apellido, mail, alias, perfil)
     return user
 }
 

@@ -1,20 +1,20 @@
 import { connection } from '../db/mysql.connection.js'
-import { helpers } from './users.helpers.js'
+import { helpers } from './socios.helpers.js'
 
 
-const table = 'usuarios'
+const table = 'socios'
 
 
-const getUsers = async () => {
+const getSocios = async () => {
     const query = `SELECT * FROM ${table}`
     const [result] = await connection.promise().query(query)
     return result
 }
 
-const getUser = async (id) => {
+const getSocio = async (id) => {
     try {
         
-        const query = `SELECT * FROM users WHERE id=${id}`
+        const query = `SELECT * FROM ${table} WHERE id=${id}`
         const [result] = await connection.promise().query(query)
         //console.log("query=: ",query)
         return result
@@ -22,45 +22,44 @@ const getUser = async (id) => {
     catch (err) { return Error(10) }
 }
 
-const createUser = async (user) => {
-
+const createSocio = async (socio) => {
     try {
        
-        const { nombre, apellido, mail, alias, perfil } = user
-        const fields = [nombre, apellido, mail, alias, perfil]
+        const { nombre, apellido, mail, activo, fecha_alta, fecha_baja } = socio
+        const fields = [nombre, apellido, mail, activo, fecha_alta, fecha_baja]
         
-        const query = `INSERT INTO ${table} VALUES (NULL,?,?,?,?,?)`
+        const query = `INSERT INTO ${table} VALUES (NULL,?,?,?,?,?,?)`
         const [result] = await connection.promise().query(query, fields)
 
         return result.affectedRows > 0
     }
     catch (err) { return false }
    
+    
 }
 
 
 
-const updateUser = async (id, user) => {
 
+const updateSocio = async (id, socio) => {
     try {
         
-        const { nombre, apellido, mail, alias, perfil } = user
-        const fields = [nombre, apellido, mail, alias, perfil,id]
-    
+        const { nombre, apellido, mail, activo, fecha_alta, fecha_baja } = socio
+        const fields = [nombre, apellido, mail, activo, fecha_alta, fecha_baja,id]
         //console.log(fields)
-        const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?, alias=?, perfil=? WHERE id=?`
+        const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?, activo=?, fecha_alta=?, fecha_baja=? WHERE id=?`
         const [result] = await connection.promise().query(query, fields)
 
         return result.affectedRows > 0 ? Error(0) : Error(3)
     }
     catch (err) { return Error(10) }
 
-    
+   
 }
 
 
 
-const deleteUser = async (id) => {
+const deleteSocio = async (id) => {
     try {
         const query = `DELETE FROM ${table} WHERE id = ?`
         const [result] = await connection.promise().query(query, id)
@@ -68,13 +67,13 @@ const deleteUser = async (id) => {
         return result.affectedRows > 0 ? Error(0) : Error(3)
     }
     catch (err) { return Error(10) }
+
 }
 
-
 export const db = {
-    getUsers,
-    getUser,
-    createUser,
-    updateUser,
-    deleteUser
+    getSocios,
+    getSocio,
+    createSocio,
+    updateSocio,
+    deleteSocio
 }

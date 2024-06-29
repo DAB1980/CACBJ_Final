@@ -5,6 +5,7 @@ import { controllers } from '../users/users.controllers.js'
 const router = Router()
 
 router
+    .get('/:id',controllers.getUser)
     .get('/', controllers.getUsers)
     .post('/', controllers.createUser)
     .put('/:id', controllers.updateUser)

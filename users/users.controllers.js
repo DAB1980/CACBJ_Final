@@ -7,6 +7,11 @@ const getUsers = async (_, res) => {
     res.json(result)
 }
 
+const getUser = async (req, res) => {
+    const user= adapters.parseUser(req.body)
+    const result = await db.getUser(user)
+    result ? res.redirect('/') : res.redirect('/')
+}
 
 
 const createUser = async (req, res) => {
@@ -36,6 +41,7 @@ const deleteUser = async (req, res) => {
 
 export const controllers = {
     getUsers,
+    getUser,
     createUser,
     updateUser,
     deleteUser
