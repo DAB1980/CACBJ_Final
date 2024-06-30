@@ -1,4 +1,4 @@
-
+const updateButton = document.getElementById('update-button')
 
 const mostrarUser = (users) => {
 
@@ -39,43 +39,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// function Guardar(){
-//   alert("ACA ESTOY")
-//   const idUser = document.getElementById('id')
-//   const nombreUser = document.getElementById('nombre') 
-//   const apellidoUser = document.getElementById('apellido')
-//   const mailUser = document.getElementById('mail')
-//   const aliasUser = document.getElementById('alias')
-//   const perfilUser = document.getElementById('perfil')
+const modifyButtonHandleClick = (e) => {
 
-//   if (idUser.value.length===0 || 
-//       nombreUser.value.length===0 ||
-//       apellidoUser.value.length===0 ||
-//       mailUser.value.length===0||
-//       aliasUser.value.length===0 ||
-//       perfilUser.value ===0){
-//         return alert('Uno o más campos no se han completado')
-//   }
+  e.preventDefault()
 
-//   const body = {
-//       id: idUser.value,
-//       nombre: nombreUser.value,
-//       apellido: apellidoUser.value,
-//       mail: mailUser.value,
-//       alias: aliasUser.value,
-//       perfil: perfilUser.value
-//   }
+  
+  const idUser = document.getElementById('id')
+  const nombreUser = document.getElementById('nombre') 
+  const apellidoUser = document.getElementById('apellido')
+  const mailUser = document.getElementById('mail')
+  const aliasUser = document.getElementById('alias')
+  const perfilUser = document.getElementById('perfil')
 
-//   const url = '/users/' + idUser.value
+  if (idUser.value.length===0 || 
+      nombreUser.value.length===0 ||
+      apellidoUser.value.length===0 ||
+      mailUser.value.length===0||
+      aliasUser.value.length===0 ||
+      perfilUser.length ===0){
+        return alert('Uno o más campos no se han completado')
+  }
 
-//   fetch(url, {
-//       method: "PUT",
-//       body: JSON.stringify(body),
-//       headers: {
-//           "Content-Type": "application/json"
-//       }
-//   })
-//       .then(res => res.json())
-//       .then(res => errorCheck(res))
-//       .catch(err => alert(err))
-// }
+  const body = {
+      id: idUser.value,
+      nombre: nombreUser.value,
+      apellido: apellidoUser.value,
+      mail: mailUser.value,
+      alias: aliasUser.value,
+      perfil: perfilUser.value
+  }
+
+  const url = '/users/' + idUser.value
+  
+  fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(body),
+      headers: {
+          "Content-Type": "application/json"
+      }
+  })
+      .then(res => res.json())
+      .then(res => errorCheck(res))
+      .catch(err => console.log(err))
+      .then(res => window.location.href = "/usersABM.html")
+}
+
+updateButton.addEventListener('click', modifyButtonHandleClick)

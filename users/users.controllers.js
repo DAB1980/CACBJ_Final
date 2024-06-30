@@ -24,7 +24,7 @@ const createUser = async (req, res) => {
 
 
 const updateUser = async (req, res) => {
-    console.log("aca");
+    
     const { id } = req.params
     const user = adapters.parseUser(req.body)
     const result = await db.updateUser(id, user)

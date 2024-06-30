@@ -48,7 +48,7 @@ const updateSocio = async (id, socio) => {
         
         const { nombre, apellido, mail,idprovincia, activo, fecha_alta, fecha_baja } = socio
         const fields = [nombre, apellido, mail, idprovincia, activo, fecha_alta, fecha_baja,id]
-        //console.log(fields)
+        console.log(fields)
         const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?,idprovincia=? ,activo=?, fecha_alta=?, fecha_baja=? WHERE id=?`
         const [result] = await connection.promise().query(query, fields)
 

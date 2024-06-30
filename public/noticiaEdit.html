@@ -20,7 +20,7 @@
         <section class="bg-white bg-opacity-75 text-black p-5">
             <h3>Editar Noticia:</h3>
             
-            <form id="form_new_noticia" enctype="multipart/form-data" action="./noticias" method="POST">
+            <form id="form_new_noticia">
             <!-- <form id="form_new_noticia"> -->
                 <div class="form-floating mb-3">
                     <input name="id" type="text" class="form-control" id="id" placeholder="Pan" disabled="true"  />
@@ -38,7 +38,7 @@
                 </div>
         
                 <div class="form-floating mb-3">
-                    <input name="date" type="date" class="form-control" id="date" placeholder="Pan" />
+                    <input name="date" type="date"  class="form-control" id="date" placeholder="Pan" />
                     <label for="date">Fecha</label>
                 </div>
         
@@ -53,7 +53,7 @@
                 </div>
        
                     
-                <button class="btn btn-success">Guardar</button>
+                <button type="button" id="update-button" class="btn btn-success">Guardar</button>
             </form>
         </section>
         

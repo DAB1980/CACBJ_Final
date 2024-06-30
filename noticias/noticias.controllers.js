@@ -43,7 +43,7 @@ const deleteNoticia = async (req, res, next) => {
 const getNoticia = async (req, res) => {
     
     const result = await db.getNoticia(req.params.id)
-    console.log("vino Noticia",result)
+    // console.log("vino Noticia",result)
     res.json(result)
 
 }
