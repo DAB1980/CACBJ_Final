@@ -13,15 +13,15 @@ const sociosTable = document.getElementById('tablaSocios')
 
 
 const template = (elem) => `
-    <td class=v-align-middle>${elem.id}</td>
-    <td class=v-align-middle>${elem.nombre}</td>
-    <td class=v-align-middle>${elem.apellido}</td>
-    <td class=v-align-middle>${elem.mail}</td>
-    <td class=v-align-middle>${elem.fecha_alta}</td>
-    <td class=v-align-middle>${elem.fecha_baja}</td>
-    <td class=v-align-middle>
+    <td class="text-center" class=v-align-middle">${elem.id}</td>
+    <td class="text-center" class=v-align-middle>${elem.nombre}</td>
+    <td class="text-center" class=v-align-middle>${elem.apellido}</td>
+    <td class="text-center" class=v-align-middle>${elem.mail}</td>
+    <td class="text-center"class=v-align-middle>${elem.fecha_alta}</td>
+    <td class="text-center" class=v-align-middle>${elem.fecha_baja}</td>
+    <td class="text-center" class=v-align-middle>
        <form id="acciones">        
-             <a href="./socioEdit.html?id=${elem.id}" id="boton_crear" class="btn btn-dark">Editar</a>
+             <a href="./socioEdit.html?id=${elem.id}" id="boton_crear" class="btn btn-warning">Editar</a>
             <button class="btn btn-danger" onclick="Borrar(${elem.id})">Borrar</button>
         </form>  
         
@@ -31,7 +31,16 @@ const template = (elem) => `
 const showSocios = (socios) => {
     for (let socio of socios) {
       const tr = document.createElement('tr')
-      const es_activo="SI"
+      
+      socio.fecha_alta= socio.fecha_alta.substring(0,10)
+      if (socio.fecha_baja==="1899-11-30T04:16:48.000Z"){
+        socio.fecha_baja=""
+      }
+      else
+      {
+         socio.fecha_baja= socio.fecha_baja.substring(0,10)
+      }
+     
       tr.innerHTML = template(socio)
       sociosTable.append(tr)
     }

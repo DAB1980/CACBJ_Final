@@ -10,15 +10,15 @@
 const usersTable = document.getElementById('tablaUsuarios')
 
 const template = (elem) => `
-    <td class=v-align-middle>${elem.id}</td>
-    <td class=v-align-middle>${elem.nombre}</td>
-    <td class=v-align-middle>${elem.apellido}</td>
-    <td class=v-align-middle>${elem.mail}</td>
-    <td class=v-align-middle>${elem.alias}</td>
-    <td class=v-align-middle>${elem.perfil}</td>
-    <td class=v-align-middle>
+    <td class="text-center" class=v-align-middle>${elem.id}</td>
+    <td class="text-center" class=v-align-middle>${elem.nombre}</td>
+    <td class="text-center" class=v-align-middle>${elem.apellido}</td>
+    <td class="text-center" class=v-align-middle>${elem.mail}</td>
+    <td class="text-center" class=v-align-middle>${elem.alias}</td>
+    <td class="text-center" class=v-align-middle>${elem.perfil}</td>
+    <td class="text-center" class=v-align-middle>
        <form id="acciones">        
-             <a href="./userEdit.html?id=${elem.id}" id="boton_crear" class="btn btn-dark">Editar</a>
+             <a href="./userEdit.html?id=${elem.id}" id="boton_crear" class="btn btn-warning">Editar</a>
             <button class="btn btn-danger" onclick="Borrar(${elem.id})">Borrar</button>
         </form>  
         
@@ -26,7 +26,7 @@ const template = (elem) => `
 `
 
 const showUsers = (users) => {
-    console.log(users)
+    
     for (let user of users) {
       const tr = document.createElement('tr')
       tr.innerHTML = template(user)

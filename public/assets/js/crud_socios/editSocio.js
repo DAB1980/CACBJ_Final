@@ -18,11 +18,27 @@ const mostrarSocio = (socios) => {
      const mailSocio = document.getElementById('mail')
      mailSocio.value=  `${socio.mail}`
 
-     const fecha_altaSocio = document.getElementById('fecha_alta')
-     fecha_altaSocio.value=  `${socio.fecha_alta}`
 
-     const fecha_bajaSocio = document.getElementById('fecha_baja')
-     fecha_bajaSocio.value=  `${socio.fecha_baja}`
+      let fecha = socio.fecha_alta.substring(0,10)
+      let year = fecha.substring(0,4);
+      let month= fecha.substring(5,7);
+      let day = fecha.substring(8,10);
+      let fechaalta_formateada = `${year}-${month}-${day}`
+     const fecha_altaSocio = document.getElementById('fecha_alta')
+     fecha_altaSocio.value=  fechaalta_formateada
+
+     
+     fecha=socio.fecha_baja
+     
+     if (fecha !== "1899-11-30T04:16:48.000Z"){
+      year = fecha.substring(0,4);
+      month= fecha.substring(5,7);
+      day = fecha.substring(8,10);
+      let fechabaja_formateada = `${year}-${month}-${day}`
+      const fecha_bajaSocio = document.getElementById('fecha_baja')
+      fecha_bajaSocio.value=  fechabaja_formateada
+     }
+     
 
      const provinciaSocio = document.getElementById('provincia')
      provinciaSocio.value=`${socio.idprovincia}`
@@ -100,7 +116,7 @@ const modifyButtonHandleClick = (e) => {
       activo: activoSocio.value,
       idprovincia: provinciaSocio.value
   }
-  console.log(body);
+  
   const url = '/socios/' + idSocio.value
   
   fetch(url, {

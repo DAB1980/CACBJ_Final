@@ -56,7 +56,7 @@ const modifyButtonHandleClick = (e) => {
       apellidoUser.value.length===0 ||
       mailUser.value.length===0||
       aliasUser.value.length===0 ||
-      perfilUser.length ===0){
+      perfilUser.length === 0){
         return alert('Uno o más campos no se han completado')
   }
 

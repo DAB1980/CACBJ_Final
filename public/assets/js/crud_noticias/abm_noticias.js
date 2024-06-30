@@ -10,15 +10,15 @@
 const noticiasTable = document.getElementById('tablaNoticias')
 
 const template = (elem) => `
-    <td class=v-align-middle>${elem.id}</td>
-    <td class=v-align-middle>${elem.title}</td>
-    <td class=v-align-middle>${elem.category}</td>
-    <td class=v-align-middle>${elem.date}</td>
-    <td class=v-align-middle><img src=${elem.img} class=img-fluid style=max-width:50px></td>
-    <td class=v-align-middle>
+    <td class="text-center" class=v-align-middle>${elem.id}</td>
+    <td class="text-center" class=v-align-middle>${elem.title}</td>
+    <td class="text-center" class=v-align-middle>${elem.category}</td>
+    <td class="text-center" class=v-align-middle>${elem.date}</td>
+    <td class="text-center" class=v-align-middle><img src=${elem.img} class=img-fluid style=max-width:50px></td>
+    <td class="text-center" class=v-align-middle>
        <form id="acciones">        
              <a href="./noticia.html?id=${elem.id}" id="boton_crear" class="btn btn-primary">Ver</a>
-             <a href="./noticiaEdit.html?id=${elem.id}" id="boton_crear" class="btn btn-dark">Editar</a>
+             <a href="./noticiaEdit.html?id=${elem.id}" id="boton_crear" class="btn btn-warning">Editar</a>
             <button class="btn btn-danger" onclick="Borrar(${elem.id})">Borrar</button>
         </form>  
         
@@ -26,9 +26,10 @@ const template = (elem) => `
 `
 
 const showNoticias = (noticias) => {
-    console.log(noticias)
+    //console.log(noticias)
     for (let noticia of noticias) {
       const tr = document.createElement('tr')
+      noticia.date=noticia.date.substring(0,10)
       tr.innerHTML = template(noticia)
       noticiasTable.append(tr)
     }
