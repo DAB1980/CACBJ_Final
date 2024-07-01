@@ -2,7 +2,7 @@ import express from 'express'
 import usersRoutes from './users/users.routes.js'
 import sociosRoutes from './socios/socios.routes.js'
 import noticiasRoutes from './noticias/noticias.routes.js'
-import plantel_fmRoutes from './plantel_fm/plantel_fm.routes.js'
+import usersABMRoutes from './users/usersABM.routes.js'
 
 
 import { middlewares } from './middlewares/index.js'
@@ -17,9 +17,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/users', usersRoutes)
+app.use('/usersABM', usersABMRoutes)
 app.use('/socios', sociosRoutes)
 app.use('/noticias', noticiasRoutes)
-app.use('/plantel_fm', plantel_fmRoutes)
+
 
 //app.use('/html_noticias', noticiasRoutes)
 

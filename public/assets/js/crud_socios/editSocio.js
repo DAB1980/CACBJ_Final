@@ -47,10 +47,10 @@ const mostrarSocio = (socios) => {
     activoSocio.innerHTML = `<option value="0">NO</option>
                              <option value="1">SI</option>`
      const activo=`${socio.activo}`
-     
-     if (activo ===1 ){
+     //alert(`activo: ${activo}`)
+     if (activo ==="1" ){
        activoSocio.value="1"
-       
+       //alert(`es 1`)
      }
      else{
       

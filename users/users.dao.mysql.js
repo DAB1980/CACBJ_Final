@@ -12,6 +12,13 @@ const getUsers = async () => {
     return result
 }
 
+const getUsersABM = async () => {
+    const query = `SELECT u.id, u.nombre, u.apellido, u.mail, u.alias, ur.rol FROM users as u, users_roles as ur WHERE u.iduser_rol=ur.id`
+    const [result] = await connection.promise().query(query)
+    return result
+}
+
+
 const getUser = async (id) => {
     try {
         
@@ -75,6 +82,7 @@ const deleteUser = async (id) => {
 export const db = {
     getUsers,
     getUser,
+    getUsersABM,
     createUser,
     updateUser,
     deleteUser

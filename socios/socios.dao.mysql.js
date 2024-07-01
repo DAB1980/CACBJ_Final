@@ -11,6 +11,7 @@ const getSocios = async () => {
     return result
 }
 
+
 const getSocio = async (id) => {
     try {
         
