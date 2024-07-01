@@ -17,6 +17,7 @@ const template = (elem) => `
     <td class="text-center" class=v-align-middle>${elem.nombre}</td>
     <td class="text-center" class=v-align-middle>${elem.apellido}</td>
     <td class="text-center" class=v-align-middle>${elem.mail}</td>
+    <td class="text-center" class=v-align-middle>${elem.provincia}</td>
     <td class="text-center"class=v-align-middle>${elem.activo}</td>
     <td class="text-center"class=v-align-middle>${elem.fecha_alta}</td>
     <td class="text-center" class=v-align-middle>${elem.fecha_baja}</td>
@@ -58,7 +59,7 @@ const showSocios = (socios) => {
     }
   } 
   
-  fetch('./socios')
+  fetch('./sociosABM')
   .then(res => res.json())
   .then(res => showSocios(res))
   .catch(err => console.log(err))
