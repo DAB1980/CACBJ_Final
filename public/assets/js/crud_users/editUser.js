@@ -19,8 +19,8 @@ const mostrarUser = (users) => {
   const aliasUser = document.getElementById('alias')
   aliasUser.value=  `${user.alias}`
 
-   const perfilUser = document.getElementById('perfil')
-  perfilUser.value=  `${user.perfil}`
+   const iduser_rolUser = document.getElementById('iduser_rol')
+   iduser_rolUser .value=  `${user.iduser_rol }`
   }
    
 }
@@ -49,14 +49,17 @@ const modifyButtonHandleClick = (e) => {
   const apellidoUser = document.getElementById('apellido')
   const mailUser = document.getElementById('mail')
   const aliasUser = document.getElementById('alias')
-  const perfilUser = document.getElementById('perfil')
+  const iduser_rolUser = document.getElementById('iduser_rol')
+  const passwordUser = document.getElementById('password')
 
   if (idUser.value.length===0 || 
       nombreUser.value.length===0 ||
       apellidoUser.value.length===0 ||
       mailUser.value.length===0||
       aliasUser.value.length===0 ||
-      perfilUser.length === 0){
+      iduser_rolUser.length === 0 ||
+      passwordUser.length === 0
+    ) {
         return alert('Uno o más campos no se han completado')
   }
 
@@ -66,9 +69,11 @@ const modifyButtonHandleClick = (e) => {
       apellido: apellidoUser.value,
       mail: mailUser.value,
       alias: aliasUser.value,
-      perfil: perfilUser.value
+      iduser_rol: iduser_rolUser.value,
+      password:passwordUser.value
   }
 
+  //alert("ACA")
   const url = '/users/' + idUser.value
   
   fetch(url, {
@@ -78,6 +83,7 @@ const modifyButtonHandleClick = (e) => {
           "Content-Type": "application/json"
       }
   })
+  
       .then(res => res.json())
       .then(res => errorCheck(res))
       .catch(err => console.log(err))
