@@ -7,7 +7,6 @@ const router = Router()
 router
     .get('/:id',
           middlewares.routes.checkParams,
-          middlewares.auth.authRoles([1, 2]),
           controllers.getNoticia)
 
     .get('/',
