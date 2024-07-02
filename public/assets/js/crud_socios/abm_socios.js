@@ -33,9 +33,10 @@ const template = (elem) => `
 const showSocios = (socios) => {
     for (let socio of socios) {
       const tr = document.createElement('tr')
-      
+     
       socio.fecha_alta= socio.fecha_alta.substring(0,10)
-      if (socio.fecha_baja==="1899-11-30T04:16:48.000Z"){
+     
+      if (socio.fecha_baja.startsWith("1899-11-30")){
         socio.fecha_baja=""
       }
       else
