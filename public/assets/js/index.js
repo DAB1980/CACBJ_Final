@@ -84,9 +84,11 @@ const addAbmLinks = () => {
   }
 }
 
-const logout = () => {
+const logout = async() => {
+  await fetch('./auth/logout')
   sessionStorage.removeItem('user')
   window.location.href = '/'
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 

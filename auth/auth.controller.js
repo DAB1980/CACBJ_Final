@@ -14,7 +14,6 @@ const register = async (req, res) => {
         iduser_rol,
         password: hash
     }
-    console.log(user)
     const existingUser = await db.getUserByEmail(mail)
     if(existingUser.length){
         return res.status(409).json({ error: 'Email ya registrado' })
@@ -51,8 +50,16 @@ const login = async (req, res) => {
     .json(payload)
 }
 
+const logout = async (req, res) => {
+    console.log(req.signedCookies)
+    res
+        .clearCookie('token', { path: '/' })
+        .status(200)
+        .json({ message: 'Logout exitoso' });
+}
 
 export const controllers = {
     register, 
-    login
+    login,
+    logout
 }

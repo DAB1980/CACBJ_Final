@@ -7,5 +7,6 @@ const router = Router()
 router
     .post('/register', controllers.register)
     .post('/login', controllers.login)
+    .get('/logout', controllers.logout)
 
 export default router
