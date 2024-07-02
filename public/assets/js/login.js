@@ -33,13 +33,8 @@ const login = async(values) => {
             throw new Error(`Error: ${response.statusText}`);
         }
         const data = await response.json();
-
-        if (data && data.perfil) {
-            sessionStorage.setItem('user', JSON.stringify(data));
-            window.location.href = '/';
-        } else {
-            throw new Error('La respuesta no contiene los datos esperados.');
-        }
+        sessionStorage.setItem('user', JSON.stringify(data));
+        window.location.href = '/';
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         alert('Error al iniciar sesión. Por favor, inténtalo de nuevo.');

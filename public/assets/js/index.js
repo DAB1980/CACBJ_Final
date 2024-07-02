@@ -34,7 +34,7 @@ const loadComponent = (elementId, filePath) => {
 const addAbmLinks = () => {
   const navbarList = document.getElementById('navbar-list')
 
-  if(userInfo?.perfil === 'admin' || userInfo?.perfil === 'editor'){
+  if(userInfo?.iduser_rol === 1 || userInfo?.iduser_rol === 2){
     const AbmNoticiasItem = document.createElement('li')
     AbmNoticiasItem.className = 'nav-item'
     const AbmNoticiasLink = document.createElement('a')
@@ -45,7 +45,7 @@ const addAbmLinks = () => {
     navbarList.appendChild(AbmNoticiasItem)
   }
 
-  if(userInfo?.perfil === 'admin'){
+  if(userInfo?.iduser_rol === 1){
     const AbmUsuariosItem = document.createElement('li')
     AbmUsuariosItem.className = 'nav-item'
     const AbmUsuariosLink = document.createElement('a')
