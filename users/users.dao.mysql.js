@@ -23,19 +23,29 @@ const getUser = async (id) => {
     catch (err) { return Error(10) }
 }
 
+const getUserByEmail = async (mail) => {
+    try {
+        const query = 'SELECT * FROM users WHERE mail = ?';
+        const [result] = await connection.promise().query(query, [mail]);
+        return result;
+    } catch (err) {
+        console.error(err); // Log the error for debugging
+        throw new Error('Database query failed'); // Throw a more descriptive error
+    }
+}
 const createUser = async (user) => {
 
     try {
        
-        const { nombre, apellido, mail, alias, perfil } = user
-        const fields = [nombre, apellido, mail, alias, perfil]
-        
-        const query = `INSERT INTO ${table} VALUES (NULL,?,?,?,?,?)`
+        const { nombre, apellido, mail, alias, perfil, password } = user
+        const fields = [nombre, apellido, mail, alias, perfil, password]
+        const query = `INSERT INTO ${table} VALUES (NULL,?,?,?,?,?,?)`
         const [result] = await connection.promise().query(query, fields)
-
         return result.affectedRows > 0
     }
-    catch (err) { return false }
+    catch (err) { 
+        return false
+    }
    
 }
 
@@ -75,6 +85,7 @@ const deleteUser = async (id) => {
 export const db = {
     getUsers,
     getUser,
+    getUserByEmail,
     createUser,
     updateUser,
     deleteUser
