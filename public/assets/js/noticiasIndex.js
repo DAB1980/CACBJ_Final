@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(data => {
         const contenedor = document.getElementById('noticias_index');
-        data.forEach((item, id) => {
-            
+        data.forEach((item) => {
+            //alert(`title noticia ${item.title}`)
             const itemNoticia = document.createElement('div');
             itemNoticia.className = 'item_noticias_index';
             const link = document.createElement('a');

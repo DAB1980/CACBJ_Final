@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
   loadComponent('footer-part', '../html_parts/footer.html');
 
   //Cargar últimas noticias
+  if (window.location.pathname === "/index.html"){
   getLastNews()
+  }
   
 });
 
@@ -87,45 +89,49 @@ const logout = () => {
   window.location.href = '/'
 }
 
-const getLastNews = () =>{
-  fetch('./noticias')
-  .then(res => res.json())
-     .then(data => {
-        const parNoticias = data.slice(0, 2)
-        const noticiasIndex = document.getElementById('noticias_index')
-        parNoticias.forEach(element => {
-          const itemNoticiasIndex = document.createElement('a')
-          itemNoticiasIndex.href = `./html_noticias/noticia.html?id=${element.id}`;
 
-          itemNoticiasIndex.className = 'item_noticias_index'
+  
+  const getLastNews = () =>{ 
+    fetch('./noticias')
+    .then(res => res.json())
+       .then(data => {
+          const parNoticias = data.slice(0, 2)
+          const noticiasIndex = document.getElementById('noticias_index')
+          parNoticias.forEach(element => {
+            const itemNoticiasIndex = document.createElement('a')
+            itemNoticiasIndex.href = `./noticia.html?id=${element.id}`;
+  
+            itemNoticiasIndex.className = 'item_noticias_index'
+  
+            const itemNoticiaImg = document.createElement('div')
+            itemNoticiaImg.className = 'item_noticia_img'
+  
+            const imagenNoticia = document.createElement('img')
+            imagenNoticia.className = 'imagen_noticia'
+            imagenNoticia.src = element.img
+            itemNoticiaImg.appendChild(imagenNoticia)
+            itemNoticiasIndex.appendChild(itemNoticiaImg)
+            
+            const itemNoticiaTitulo = document.createElement('div')
+            itemNoticiaTitulo.className = 'item_noticia_titulo'
+            itemNoticiaTitulo.textContent = element.title
+            itemNoticiasIndex.appendChild(itemNoticiaTitulo)
+  
+            const itemNoticiaCopete = document.createElement('div')
+            itemNoticiaCopete.className = 'item_noticia_copete'
+            itemNoticiaCopete.textContent = element.subtitle
+            itemNoticiasIndex.appendChild(itemNoticiaCopete)
+            
+            
+            
+            noticiasIndex.appendChild(itemNoticiasIndex)
+          });
+      })
+      .catch(err => console.log(err))
+      //.catch(error => console.error('Error al cargar el JSON:', error));
+  }
 
-          const itemNoticiaImg = document.createElement('div')
-          itemNoticiaImg.className = 'item_noticia_img'
 
-          const imagenNoticia = document.createElement('img')
-          imagenNoticia.className = 'imagen_noticia'
-          imagenNoticia.src = element.img
-          itemNoticiaImg.appendChild(imagenNoticia)
-          itemNoticiasIndex.appendChild(itemNoticiaImg)
-          
-          const itemNoticiaTitulo = document.createElement('div')
-          itemNoticiaTitulo.className = 'item_noticia_titulo'
-          itemNoticiaTitulo.textContent = element.title
-          itemNoticiasIndex.appendChild(itemNoticiaTitulo)
-
-          const itemNoticiaCopete = document.createElement('div')
-          itemNoticiaCopete.className = 'item_noticia_copete'
-          itemNoticiaCopete.textContent = element.subtitle
-          itemNoticiasIndex.appendChild(itemNoticiaCopete)
-          
-          
-          
-          noticiasIndex.appendChild(itemNoticiasIndex)
-        });
-    })
-    .catch(err => console.log(err))
-    //.catch(error => console.error('Error al cargar el JSON:', error));
-}
 
 const displayWelcome = () => {
   if(userInfo){
