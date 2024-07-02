@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadComponent('footer-part', '../html_parts/footer.html');
 
   //Cargar últimas noticias
-  if (window.location.pathname === "/index.html"){
+  if (window.location.pathname === "/index.html" || window.location.pathname === "/" ){
   getLastNews()
   }
   
