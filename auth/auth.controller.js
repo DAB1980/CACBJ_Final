@@ -4,7 +4,7 @@ import { config } from './auth.config.js'
 import { db } from "../users/users.dao.mysql.js"
 
 const register = async (req, res) => {
-    const { nombre, apellido, mail, alias, iduser_rol = 1, password } = req.body
+    const { nombre, apellido, mail, alias, iduser_rol = 3, password } = req.body
     const hash = bcrypt.hashSync(password, 1)
     const user = {
         nombre,
