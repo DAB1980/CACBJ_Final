@@ -5,8 +5,6 @@ import { controllers } from '../products/products.controllers.js'
 const router = Router()
 
 router
-    .use(middlewares.routes.checkRoute)
-
     .get('/',
         controllers.getProducts)
 

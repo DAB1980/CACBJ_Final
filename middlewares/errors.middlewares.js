@@ -19,17 +19,10 @@ const errorData = (req) => ({
     }
 })
 
-
-
 const errorController = (err, req, res, _) => {
-
-    
-    console.log('ESTAMOS EN EL MIDDLEWARE DE ERRORES')
-    //console.log(req.body)
-    //console.log(err)
-
     const errorCode = parseInt(err.message)
     const error = errorData(req)
+    console.log(err)
 
     res.status(500)
 
