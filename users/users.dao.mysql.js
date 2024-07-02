@@ -12,6 +12,13 @@ const getUsers = async () => {
     return result
 }
 
+const getUsersABM = async () => {
+    const query = `SELECT u.id, u.nombre, u.apellido, u.mail, u.alias, ur.rol FROM users as u, users_roles as ur WHERE u.iduser_rol=ur.id`
+    const [result] = await connection.promise().query(query)
+    return result
+}
+
+
 const getUser = async (id) => {
     try {
         
@@ -37,8 +44,9 @@ const createUser = async (user) => {
 
     try {
        
-        const { nombre, apellido, mail, alias, perfil, password } = user
-        const fields = [nombre, apellido, mail, alias, perfil, password]
+        const { nombre, apellido, mail, alias,iduser_rol, password } = user
+        const fields = [nombre, apellido, mail, alias, iduser_rol, password]
+        
         const query = `INSERT INTO ${table} VALUES (NULL,?,?,?,?,?,?)`
         const [result] = await connection.promise().query(query, fields)
         return result.affectedRows > 0
@@ -55,11 +63,11 @@ const updateUser = async (id, user) => {
 
     try {
         
-        const { nombre, apellido, mail, alias, perfil } = user
-        const fields = [nombre, apellido, mail, alias, perfil,id]
+        const { nombre, apellido, mail, alias, iduser_rol, password  } = user
+        const fields = [nombre, apellido, mail, alias, iduser_rol, password ,id]
     
         //console.log(fields)
-        const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?, alias=?, perfil=? WHERE id=?`
+        const query = `UPDATE ${table} SET nombre=?, apellido=?, mail=?, alias=?, iduser_rol=?, password=?  WHERE id=?`
         const [result] = await connection.promise().query(query, fields)
          //console.log(result)
         return result.affectedRows > 0 ? Error(0) : Error(3)
@@ -86,6 +94,7 @@ export const db = {
     getUsers,
     getUser,
     getUserByEmail,
+    getUsersABM,
     createUser,
     updateUser,
     deleteUser

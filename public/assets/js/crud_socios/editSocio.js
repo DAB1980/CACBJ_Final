@@ -39,18 +39,19 @@ const mostrarSocio = (socios) => {
       fecha_bajaSocio.value=  fechabaja_formateada
      }
      
-
+     //alert(` viene socio con provincia ${socio.idprovincia}` )
      const provinciaSocio = document.getElementById('provincia')
+     // alert(` la cantidad de provincias en select es ${provinciaSocio.length} ` ) 
      provinciaSocio.value=`${socio.idprovincia}`
                 
      const activoSocio = document.getElementById('activo')
     activoSocio.innerHTML = `<option value="0">NO</option>
                              <option value="1">SI</option>`
      const activo=`${socio.activo}`
-     
-     if (activo ===1 ){
+     //alert(`activo: ${activo}`)
+     if (activo ==="1" ){
        activoSocio.value="1"
-       
+       //alert(`es 1`)
      }
      else{
       
@@ -60,19 +61,42 @@ const mostrarSocio = (socios) => {
    
 }
 
+const mostrarProvincias = (provincias) => {
+  const provinciaSocio = document.getElementById('provincia')
+  for (let provincia of provincias) {
+    let nuevaOpcion = document.createElement("option");
+    nuevaOpcion.value = provincia.id;
+    nuevaOpcion.text = provincia.provincia;
+    provinciaSocio.add(nuevaOpcion);
 
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     //fetch('../data/noticias.json')
-      //cargarSelectSocioActivo()
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get('id')
-      const url = '/socios/' + id
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id')
+    const url = '/socios/' + id
+
+      fetch("/provincias")
+      .then(res => res.json())
+      .then(res => mostrarProvincias(res))
+      .catch(error => console.error(error))
       
+      setTimeout(() => {
+        console.log("Espero cargar Combo provincias");
+        }, "2000");
+
       fetch(url)
         .then(res => res.json())
         .then(res => mostrarSocio(res))
-        .catch(error => console.error(error));
+        .catch(error => console.error(error))
+      
+
+      
+      
+      
+    
 });
 
 

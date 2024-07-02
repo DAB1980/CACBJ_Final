@@ -7,12 +7,19 @@ const getUsers = async (_, res) => {
     res.json(result)
 }
 
+const getUsersABM = async (_, res) => {
+    const result = await db.getUsersABM()
+    res.json(result)
+}
+
 const getUser = async (req, res) => {
     const { id } = req.params
     const result = await db.getUser(id)
    // console.log("va usuario",result)
     res.json(result)
 }
+
+
 
 
 const createUser = async (req, res) => {
@@ -44,6 +51,7 @@ const deleteUser = async (req, res) => {
 export const controllers = {
     getUsers,
     getUser,
+    getUsersABM,
     createUser,
     updateUser,
     deleteUser

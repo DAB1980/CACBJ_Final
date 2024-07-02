@@ -17,6 +17,8 @@ const template = (elem) => `
     <td class="text-center" class=v-align-middle>${elem.nombre}</td>
     <td class="text-center" class=v-align-middle>${elem.apellido}</td>
     <td class="text-center" class=v-align-middle>${elem.mail}</td>
+    <td class="text-center" class=v-align-middle>${elem.provincia}</td>
+    <td class="text-center"class=v-align-middle>${elem.activo}</td>
     <td class="text-center"class=v-align-middle>${elem.fecha_alta}</td>
     <td class="text-center" class=v-align-middle>${elem.fecha_baja}</td>
     <td class="text-center" class=v-align-middle>
@@ -40,13 +42,24 @@ const showSocios = (socios) => {
       {
          socio.fecha_baja= socio.fecha_baja.substring(0,10)
       }
+
+      
+      if (socio.activo===0){
+        socio.activo="NO"
+      }
+      else{
+        socio.activo="SI"
+        
+      }
+
+
      
       tr.innerHTML = template(socio)
       sociosTable.append(tr)
     }
   } 
   
-  fetch('./socios')
+  fetch('./sociosABM')
   .then(res => res.json())
   .then(res => showSocios(res))
   .catch(err => console.log(err))

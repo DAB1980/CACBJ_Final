@@ -7,6 +7,12 @@ const getSocios = async (_, res) => {
     res.json(result)
 }
 
+const getSociosABM = async (_, res) => {
+    const result = await db.getSociosABM()
+    res.json(result)
+}
+
+
 const getSocio = async (req, res) => {
     const { id } = req.params
     const result = await db.getSocio(id)
@@ -42,6 +48,7 @@ const deleteSocio = async (req, res) => {
 
 export const controllers = {
     getSocios,
+    getSociosABM,
     getSocio,
     createSocio,
     updateSocio,

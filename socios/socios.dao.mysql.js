@@ -11,6 +11,13 @@ const getSocios = async () => {
     return result
 }
 
+const getSociosABM = async () => {
+    const query = `SELECT s.id, s.nombre, s.apellido,s.mail, p.provincia, s.activo, s.fecha_alta, s.fecha_baja FROM socios s, provincias p WHERE s.idprovincia=p.id`
+    const [result] = await connection.promise().query(query)
+    return result
+}
+
+
 const getSocio = async (id) => {
     try {
         
@@ -74,6 +81,7 @@ const deleteSocio = async (id) => {
 
 export const db = {
     getSocios,
+    getSociosABM,
     getSocio,
     createSocio,
     updateSocio,

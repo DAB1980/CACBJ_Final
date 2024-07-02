@@ -15,7 +15,7 @@ const template = (elem) => `
     <td class="text-center" class=v-align-middle>${elem.apellido}</td>
     <td class="text-center" class=v-align-middle>${elem.mail}</td>
     <td class="text-center" class=v-align-middle>${elem.alias}</td>
-    <td class="text-center" class=v-align-middle>${elem.perfil}</td>
+    <td class="text-center" class=v-align-middle>${elem.rol}</td>
     <td class="text-center" class=v-align-middle>
        <form id="acciones">        
              <a href="./userEdit.html?id=${elem.id}" id="boton_crear" class="btn btn-warning">Editar</a>
@@ -34,7 +34,7 @@ const showUsers = (users) => {
     }
   } 
   
-  fetch('./users')
+  fetch('./usersABM')
   .then(res => res.json())
   .then(res => showUsers(res))
   .catch(err => console.log(err))
